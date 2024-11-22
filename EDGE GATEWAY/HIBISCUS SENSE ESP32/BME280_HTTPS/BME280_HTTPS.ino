@@ -59,7 +59,7 @@ void loop() {
   if (millis() - lastMillis > 15000) {
     lastMillis = millis();
 
-    String payload = "{\"uid\":\"Flame\",\"data\":{";
+    String payload = "{\"uid\":\"BME\",\"data\":{";
       payload += "\"status\":\"" + status + "\",";
       payload += "\"temperature\":\"" + String(temperature) + "\",";
       payload += "\"humidity\":\"" + String(humidity) + "\",";
