@@ -5,10 +5,10 @@ import requests
 import json
 
 # Favoriot HTTP API details
-url = "https://apiv2.favoriot.com/v2/gateway/streams/ESP32_GATEWAY@fiqxqdin"  
+url = "YOUR_URL"  
 headers = {
     'Content-Type': 'application/json',
-    'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpcXhxZGluIiwicmVhZF93cml0ZSI6dHJ1ZSwiaWF0IjoxNzI3NjYwNDcxfQ.AW0uDZsnFuvYCrMX4u26xEridN00zIjLvGXWm1ynm_s'  # Replace with your actual API key
+    'apikey': 'YOUR_APIKEY'  # Replace with your actual API key
 }
 
 # Pin Definitons:
