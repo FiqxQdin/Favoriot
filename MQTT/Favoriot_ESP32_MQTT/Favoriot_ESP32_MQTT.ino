@@ -5,16 +5,16 @@
 #include <MQTT.h>
 #include <ArduinoJson.h>
 
-const char ssid[] = "favoriot@unifi";
-const char password[] = "fav0r10t2017";
+const char ssid[] = "YOUR_WIFI_SSID";
+const char password[] = "YOUR_WIFI_PASS";
 
 const char mqtt_broker[] = "mqtt.favoriot.com";
 const int mqtt_port = 1883;
-const char mqtt_uniqueID[] = "FIQXQDIN";
-const char mqtt_username[] = "1Ydpudja2l1YGz6jDnmloMBynvOckVpg";
-const char mqtt_password[] = "1Ydpudja2l1YGz6jDnmloMBynvOckVpg";
-const char controlTopic[] = "1Ydpudja2l1YGz6jDnmloMBynvOckVpg/v2/rpc";
-const char statusTopic[] = "1Ydpudja2l1YGz6jDnmloMBynvOckVpg/v2/streams/status";
+const char mqtt_uniqueID[] = "YOUR_UNIQUE_ID";
+const char mqtt_username[] = "YOUR_ACCESS_TOKEN";
+const char mqtt_password[] = "YOUR_ACCESS_TOKEN";
+const char controlTopic[] = "YOUR_ACCESS_TOKEN/v2/rpc";
+const char statusTopic[] = "YOUR_ACCESS_TOKEN/v2/streams/status";
 
 MQTTClient mqtt(4096);
 WiFiClient client;
