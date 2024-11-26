@@ -9,10 +9,10 @@ import json
 fav_url = "https://apiv2.favoriot.com/v2/streams"
 fav_headers = {
     "Content-Type":"application/json",
-    "apikey":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpcXhxZGluIiwicmVhZF93cml0ZSI6dHJ1ZSwiaWF0IjoxNzI3NjYwNDcxfQ.AW0uDZsnFuvYCrMX4u26xEridN00zIjLvGXWm1ynm_s"
+    "apikey":"YOUR_APIKEY"
 }
 fav_params = {
-    "device_developer_id":"Hibiscus_Sense_ESP32@fiqxqdin",
+    "device_developer_id":"YOUR_DEVICE_ID",
     "max":1,
     "order":"desc"
 }
@@ -44,9 +44,9 @@ print (line_protocol)
 ####################
 # POST to Influxdb #
 ####################
-InfluxdbURL = "https://us-east-1-1.aws.cloud2.influxdata.com/api/v2/write?bucket=Favoriot&org=Favoriot"
+InfluxdbURL = "https://us-east-1-1.aws.cloud2.influxdata.com/api/v2/write?bucket=YOUR_BUCKET&org=YOUR_ORG"
 Influxdb_headers = {
-    "Authorization": "Token FKguN1aGjZzFRiSGWt632HGoJ9DiJ3hzeTj-qjOppdZhwqZyi81xJm2z-JQtfuBT7SPQf4V9D6EGy-K6ioIEpg==",
+    "Authorization": "Token YOUR_TOKEN",
     "Content-Type": "text/plain"
 }
 p = requests.post(url=InfluxdbURL,headers=Influxdb_headers,data=line_protocol)
