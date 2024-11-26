@@ -28,9 +28,11 @@ def data():
         print(f"Line Protocol: {lp}")
 
         print("Sending to InfluxDB...")
-        url = "https://us-east-1-1.aws.cloud2.influxdata.com/api/v2/write?bucket=Testing&org=Favoriot"
+
+        # Change to your bucket and organization
+        url = "https://us-east-1-1.aws.cloud2.influxdata.com/api/v2/write?bucket=YOUR_BUCKET&org=YOUR_ORGANIZATION"
         headers = {
-            "Authorization": "Token mPMgPgfLt0stULInRIyVPt3inWbc44jNfoVRJ02_XSmGwU0ib3HzYlsnG04B7Zy9HDH7f6-s2ke5pLIPMyLgrg==",  # Replace with your token
+            "Authorization": "Token YOUR_TOKEN",  # Replace with your token
             "Content-Type": "text/plain"
         }
 
