@@ -5,12 +5,13 @@ data = "python temp1=30,temp2=50"
 
 # Influxdb Headers
 headers = {
-    "Authorization": "Token FKguN1aGjZzFRiSGWt632HGoJ9DiJ3hzeTj-qjOppdZhwqZyi81xJm2z-JQtfuBT7SPQf4V9D6EGy-K6ioIEpg==",
+    "Authorization": "Token YOUR_TOKEN",
     "Content-Type": "text/plain"
 }
 
 # Request to POST data to Influxdb
-r = requests.post("https://us-east-1-1.aws.cloud2.influxdata.com/api/v2/write?bucket=Favoriot&org=Favoriot", headers=headers, data=data)
+# Change to your bucket and organization
+r = requests.post("https://us-east-1-1.aws.cloud2.influxdata.com/api/v2/write?bucket=YOUR_BUCKET&org=YOUR_ORG", headers=headers, data=data)
 
 # Print response from Influxdb
 print(r.text)
