@@ -25,9 +25,10 @@ def data() :
     print(lp)
 
     print ("send to Influxdb")
-    url = "https://us-east-1-1.aws.cloud2.influxdata.com/api/v2/write?bucket=Favoriot&org=Favoriot"
+    # Change to your bucket and org
+    url = "https://us-east-1-1.aws.cloud2.influxdata.com/api/v2/write?bucket=YOUR_BUCKET&org=YOUR_ORGANIZATION"
     headers = {
-        "Authorization": "Token FKguN1aGjZzFRiSGWt632HGoJ9DiJ3hzeTj-qjOppdZhwqZyi81xJm2z-JQtfuBT7SPQf4V9D6EGy-K6ioIEpg==",
+        "Authorization": "Token YOUR_TOKEN",
         "Content-Type": "text/plain"
     }
     response = requests.post(url, headers=headers, data=lp)
