@@ -5,12 +5,10 @@
 #include <HTTPClient.h>
 #include <Adafruit_BME280.h>
 
-const char ssid[] = "favoriot@unifi";
-const char password[] = "fav0r10t2017";
-const char deviceDeveloperId[] = "Hibiscus_Sense_ESP32@fiqxqdin";
-// APIkey[] @ deviceAccessToken[] - either one for Favoriot
-const char APIkey[] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpcXhxZGluIiwicmVhZF93cml0ZSI6dHJ1ZSwiaWF0IjoxNzI3NjYwNDcxfQ.AW0uDZsnFuvYCrMX4u26xEridN00zIjLvGXWm1ynm_s";
-// const char deviceAccessToken[] = "1Ydpudja2l1YGz6jDnmloMBynvOckVpg";
+const char ssid[] = "YOUR_WIFI_SSID";
+const char password[] = "YOUR_WIFI_PASS";
+const char deviceDeveloperId[] = "YOUR_DEVICE_ID";
+const char APIkey[] = "YOUR_FAVORIOT_APIKEY";
 const char serverUrl[] = "http://apiv2.favoriot.com/v2/streams";
 
 Adafruit_BME280 bme;
@@ -75,10 +73,7 @@ void loop() {
     http.begin(client, serverUrl);
 
     http.addHeader("Content-Type", "application/json");
-
-    // APIkey @ deviceAccessToken - either one for Favoriot
     http.addHeader("Apikey", APIkey);
-    // http.addHeader("Apikey", deviceAccessToken);
 
     int httpCode = http.POST(favoriotJson);
 
