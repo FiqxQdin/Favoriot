@@ -7,10 +7,12 @@
 #include <NetworkClientSecure.h>
 #include "FavoriotCA.h" // certificate
 
-const char ssid[] = "favoriot@unifi";
-const char password[] = "fav0r10t2017";
-const char APIkey[] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpcXhxZGluIiwicmVhZF93cml0ZSI6dHJ1ZSwiaWF0IjoxNzI3NjYwNDcxfQ.AW0uDZsnFuvYCrMX4u26xEridN00zIjLvGXWm1ynm_s";
-String serverUrl = "https://apiv2.favoriot.com/v2/rpc?device_developer_id=Hibiscus_Sense_ESP32@fiqxqdin&timeout=5000";
+const char ssid[] = "YOUR_WIFI_SSID";
+const char password[] = "YOUR_WIFI_PASS";
+const char APIkey[] = "YOUR_APIKEY";
+
+// Change the URL, need to insert your device ID
+String serverUrl = "https://apiv2.favoriot.com/v2/rpc?device_developer_id=YOUR_DEVICE_ID&timeout=5000";
 
 unsigned long lastMillis = 0;
 
