@@ -2,10 +2,10 @@
 
 import requests
 
-url = "https://apiv2.favoriot.com/v2/streams?device_developer_id=Hibiscus_Sense_ESP32@fiqxqdin&max=1&order=desc"
+url = "https://apiv2.favoriot.com/v2/streams?device_developer_id=YOUR_DEVICE_ID&max=1&order=desc"
 headers = headers = {
     "Content-Type": "application/json",     
-    "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZpcXhxZGluIiwicmVhZF93cml0ZSI6dHJ1ZSwiaWF0IjoxNzI3NjYwNDcxfQ.AW0uDZsnFuvYCrMX4u26xEridN00zIjLvGXWm1ynm_s"            
+    "apikey": "YOUR_APIKEY"            
 }
 
 r = requests.get(url=url, headers=headers)
