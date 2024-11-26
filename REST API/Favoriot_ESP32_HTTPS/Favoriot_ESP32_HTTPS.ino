@@ -1,4 +1,4 @@
-// Favoriot RPC [HTTPS] GET
+// Favoriot RPC [HTTPS - GET]
 // APIkey = Favoriot APIkey @ deviceAccessToken - either one can use for Favoriot
 // but for RPC can only use APIkey
 
@@ -10,9 +10,7 @@
 const char ssid[] = "YOUR_WIFI_SSID";
 const char password[] = "YOUR_WIFI_PASS";
 const char APIkey[] = "YOUR_APIKEY";
-
-// Change the URL, need to insert your device ID
-String serverUrl = "https://apiv2.favoriot.com/v2/rpc?device_developer_id=YOUR_DEVICE_ID&timeout=5000";
+String serverUrl = "https://apiv2.favoriot.com/v2/rpc?device_developer_id=Hibiscus_Sense_ESP32@fiqxqdin&timeout=5000";
 
 unsigned long lastMillis = 0;
 
