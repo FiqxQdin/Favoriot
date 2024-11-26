@@ -1,0 +1,101 @@
+// Favoriot -> ESP32 [MQTT]
+// RPC
+
+#include <WiFi.h>
+#include <MQTT.h>
+#include <ArduinoJson.h>
+
+const char ssid[] = "favoriot@unifi";
+const char password[] = "fav0r10t2017";
+
+const char mqtt_broker[] = "mqtt.favoriot.com";
+const int mqtt_port = 1883;
+const char mqtt_uniqueID[] = "FIQXQDIN";
+const char mqtt_username[] = "1Ydpudja2l1YGz6jDnmloMBynvOckVpg";
+const char mqtt_password[] = "1Ydpudja2l1YGz6jDnmloMBynvOckVpg";
+const char controlTopic[] = "1Ydpudja2l1YGz6jDnmloMBynvOckVpg/v2/rpc";
+const char statusTopic[] = "1Ydpudja2l1YGz6jDnmloMBynvOckVpg/v2/streams/status";
+
+MQTTClient mqtt(4096);
+WiFiClient client;
+
+void connect_wifi() {
+  Serial.print("Connecting to Wi-Fi: ");
+  Serial.print(ssid);
+  WiFi.begin(ssid, password);
+
+  while(WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+
+  Serial.println("");
+  Serial.println("Wi-Fi Connected!");
+  Serial.print("ESP32 IP address: ");
+  Serial.println(WiFi.localIP());
+  Serial.println("");
+}
+
+void messageReceived(String &topic, String &payload) {
+  Serial.println("Incoming: " + topic + " - " + payload);
+  
+  JsonDocument doc;
+  DeserializationError error = deserializeJson(doc, payload);
+
+  if (doc.containsKey("led")) {
+    String ledState = doc["led"]; // This retrieves the value "on" or "off"
+    if (ledState == "on") {
+      Serial.println("LED " + ledState);
+      digitalWrite(2, LOW);
+    } 
+    else {
+      Serial.println("LED " + ledState);
+      digitalWrite(2, HIGH);
+    }
+    Serial.println("");
+  }
+}
+
+void connect_mqtt() {
+  Serial.print("Connecting to MQTT Broker ...");
+  mqtt.begin(mqtt_broker, mqtt_port, client);
+  mqtt.onMessage(messageReceived); // Incoming message
+
+  while (!mqtt.connect(mqtt_uniqueID, mqtt_username, mqtt_password)) {
+    Serial.print(".");
+    delay(500);
+  }
+
+  Serial.println(" connected!");
+
+  Serial.print("Subscribe to: ");
+  Serial.println(String(statusTopic));
+  mqtt.subscribe(String(statusTopic));
+  Serial.print("Subscribe to: ");
+  Serial.println(String(controlTopic));
+  mqtt.subscribe(String(controlTopic));
+
+  Serial.println("");
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(2, OUTPUT);
+  digitalWrite(2,HIGH);
+
+  connect_wifi();
+  connect_mqtt();
+}
+
+void loop() {
+  if (WiFi.status() != WL_CONNECTED) {
+    connect_wifi();
+  }
+
+  if (!mqtt.connected()) {
+    connect_mqtt();
+  }
+  mqtt.loop();
+  delay(10);  // <- fixes some issues with WiFi stability
+}
