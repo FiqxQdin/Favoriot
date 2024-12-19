@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Linear Regression Analysis</h1>
+
+<h2>Favoriot Configuration</h2>
+
+<form id="configForm">
+  <label for="device_id">Device Developer ID :</label><br>
+  <input type="text" id="device_id" name="device_id"><br><br>
+  
+  <label for="apikey">API Key :</label><br>
+  <input type="text" id="apikey" name="apikey"><br><br>
+
+  <label for="date">Date :</label><br>
+  <input type="datetime-local" id="date" name="date"><br><br>
+
+  <button type="button" onclick="submitForm()">Submit</button>
+</form> 
+
+<script>
+function submitForm() {
+  const form = document.getElementById('configForm');
+  
+  // Collect form data
+  const data = {
+    device_id: form.device_id.value,
+    apikey: form.apikey.value,
+    date: form.date.value
+  };
+  
+  // Send JSON data via POST
+  fetch('/input', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log('Success:', data);
+    window.location.href = '/input';
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+</script>
+
+</body>
+</html>
+
