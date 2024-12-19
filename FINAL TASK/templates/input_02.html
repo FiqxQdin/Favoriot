@@ -1,0 +1,84 @@
+<!-- Create Graph without marker -->
+<!-- Output PNG :  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Data Viewer</title>
+  
+  <!-- Include Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    function updateData() {
+      const selectedKey = document.getElementById("x-axis").value;
+      const dataDiv = document.getElementById("data-display");
+      const favData = JSON.parse('{{ fav_data | tojson | safe }}');
+
+      // Prepare data for the chart
+      const labels = [];  // For timestamps
+      const values = [];  // For selected key values
+
+      favData.results.forEach(entry => {
+        const value = entry.data[selectedKey];
+        const timestamp = new Date(entry.timestamp).toLocaleString();
+        labels.push(timestamp);
+        values.push(value);
+      });
+
+      // Create a graph using Chart.js
+      const ctx = document.getElementById('dataChart').getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'line',  // Line chart type
+        data: {
+          labels: labels,
+          datasets: [{
+            label: selectedKey,
+            data: values,
+            borderColor: 'rgba(75, 192, 192, 1)',  // Line color
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Background color (for fill)
+            borderWidth: 1,
+            fill: false,  // Disable area fill under the line
+            pointRadius: 0,  // Disable points (no markers)
+            pointHoverRadius: 0,  // Disable hover effect on points
+          }]
+        },
+        options: {
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Timestamp'
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: selectedKey
+              }
+            }
+          }
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+  <h1>Dynamic Data Viewer</h1>
+
+  <label for="x-axis">Choose X-axis parameter:</label>
+  <select id="x-axis" onchange="updateData()">
+    {% for key in fav_data.results[0].data.keys() %}
+      <option value="{{ key }}">{{ key }}</option>
+    {% endfor %}
+  </select>
+
+  <h2>Selected Data Graph</h2>
+
+  <!-- Canvas element for Chart.js -->
+  <canvas id="dataChart" width="400" height="200"></canvas>
+
+</body>
+</html>
