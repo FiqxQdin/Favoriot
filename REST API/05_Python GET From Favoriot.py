@@ -3,7 +3,7 @@
 import requests
 
 url = "https://apiv2.favoriot.com/v2/streams?device_developer_id=YOUR_DEVICE_ID&max=1&order=desc"
-headers = headers = {
+headers = {
     "Content-Type": "application/json",     
     "apikey": "YOUR_APIKEY"            
 }
